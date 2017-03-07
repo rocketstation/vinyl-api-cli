@@ -1,0 +1,36 @@
+{
+  "name": "@rstation/api-cli",
+  "version": "0.1.0",
+  "description": "API cli tool",
+  "keywords": [
+    "rocket station",
+    "cli"
+  ],
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint . --fix",
+    "check-dependencies": "ncu"
+  },
+  "author": "Rocket Station <contact@rstation.io> (https://rstation.io)",
+  "contributors": [
+    "Oleksii Bilous <oleksiibilous@rstation.io> (https://rstation.io)",
+    "Oleksii Pysanko <oleksiipysanko@rstation.io> (https://rstation.io)"
+  ],
+  "license": "MIT",
+  "bin": {
+    "rsapi": "bin/index.js"
+  },
+  "devDependencies": {
+    "eslint": "^3.11.0",
+    "eslint-config-airbnb-base": "^11.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "npm-check-updates": "^2.8.8"
+  },
+  "engines": {
+    "node": "7"
+  },
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "change-case": "^3.0.1",
+    "vorpal": "^1.11.4"
+  }
+}
