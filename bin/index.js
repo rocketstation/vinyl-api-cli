@@ -5,7 +5,7 @@ const fs = require('fs');
 const changeCase = require('change-case');
 const generate = require('../src/commands/generate');
 const vorpal = require('vorpal')();
-const RStationAPI = require('@rstation/api').RStationAPI;
+const RStationAPI = require('api').RStationAPI;
 
 const rstationAPI = new RStationAPI({});
 
