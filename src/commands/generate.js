@@ -179,5 +179,33 @@ module.exports = (Bluebird, fs, path, changeCase, rstationAPI, options) => {
       return Bluebird.resolve();
     });
   }
+  if (options.component === 'secret') {
+    const rcPath = path.join(process.cwd(), '.apirc.js');
+    if (fs.existsSync(rcPath)) {
+      const rc = require(rcPath);
+      if (rc.secret) {
+        Object.keys(rc.secret).forEach((env) => {
+          let configPath = path.join(process.cwd(), 'config');
+          let config = {};
+          configPath = `${configPath}/${env === 'common' ? '' : `${env}/`}secret.js`;
+          if (fs.existsSync(configPath)) config = require(configPath);
+          const keys = Object.keys(config);
+          const nextKeys = rc.secret[env];
+          nextKeys.forEach((item) => {
+            if (!keys.includes(item)) keys.push(item);
+          });
+          let str = `module.exports = {`;
+          keys.sort().forEach((item) => {
+            const value = config[item];
+            str += `
+  ${item}: ${value ? `${typeof value === 'string' ? `'${value}'` : value}` : `''`},`;
+          });
+          str += `
+}`;
+          fs.writeFileSync(configPath, str);
+        });
+      }
+    }
+  }
   return Bluebird.resolve();
 };
