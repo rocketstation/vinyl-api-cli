@@ -20,18 +20,18 @@
     "rsapi": "bin/index.js"
   },
   "devDependencies": {
-    "eslint": "^3.11.0",
-    "eslint-config-airbnb-base": "^11.0.0",
-    "eslint-plugin-import": "^2.2.0",
-    "npm-check-updates": "^2.8.8"
+    "eslint": "3",
+    "eslint-config-airbnb-base": "11",
+    "eslint-plugin-import": "2",
+    "npm-check-updates": "2"
   },
   "engines": {
-    "node": "7"
+    "node": ">=7"
   },
   "dependencies": {
     "api": "git+https://2680d900d14b9746903be541aa2faa25924f8c14:x-oauth-basic@github.com/rocketstation/temp-api.git",
-    "bluebird": "^3.4.6",
-    "change-case": "^3.0.1",
-    "vorpal": "^1.11.4"
+    "bluebird": "3",
+    "change-case": "3",
+    "vorpal": "1"
   }
 }
