@@ -1,14 +1,14 @@
 {
-  "name": "@rstation/api-cli",
+  "name": "rocketstation-temp-cli",
   "version": "0.1.0",
-  "description": "API cli tool",
+  "description": "CLI tool",
   "keywords": [
-    "rocket station",
+    "rocketstation",
     "cli"
   ],
   "scripts": {
-    "lint": "./node_modules/.bin/eslint . --fix",
-    "check-dependencies": "ncu"
+    "build": "rm -rf build && babel src --ignore test.js -d build",
+    "lint": "standard 'src/**/!(test.js)' --fix --verbose | snazzy"
   },
   "author": "Rocket Station <contact@rstation.io> (https://rstation.io)",
   "contributors": [
@@ -17,21 +17,22 @@
   ],
   "license": "MIT",
   "bin": {
-    "rsapi": "bin/index.js"
+    "rs": "build/index.js"
   },
   "devDependencies": {
-    "eslint": "3",
-    "eslint-config-airbnb-base": "11",
-    "eslint-plugin-import": "2",
-    "npm-check-updates": "2"
+    "babel-cli": "6",
+    "babel-plugin-transform-object-rest-spread": "6",
+    "babel-preset-env": "1",
+    "babel-register": "6",
+    "snazzy": "7",
+    "standard": "10"
   },
   "engines": {
     "node": ">=7"
   },
   "dependencies": {
-    "api": "git+https://2680d900d14b9746903be541aa2faa25924f8c14:x-oauth-basic@github.com/rocketstation/temp-api.git",
-    "bluebird": "3",
     "change-case": "3",
+    "rocketstation-api": "1",
     "vorpal": "1"
   }
 }
