@@ -10,7 +10,8 @@ var _rocketstationApi = require('rocketstation-api');
 const create = exports.create = async () => {
   await (0, _rocketstationApi.load)();
   const { container: { db, pgp } } = _rocketstationApi.bottle;
-  await db.create(pgp);
+  const connection = db.getConnection(pgp);
+  await db.create(connection, pgp);
   pgp.end();
 };
 
