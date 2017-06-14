@@ -3,7 +3,8 @@ import { bottle, load, loadMigrations } from 'rocketstation-api'
 export const create = async () => {
   await load()
   const { container: { db, pgp } } = bottle
-  await db.create(pgp)
+  const connection = db.getConnection(pgp)
+  await db.create(connection, pgp)
   pgp.end()
 }
 
