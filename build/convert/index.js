@@ -32,7 +32,7 @@ const convertModel = (title, { rawAttributes, tableName: table, options: { index
     });
     if (typeof type !== 'undefined') {
       let typeStr = `Sequelize.${type.key}`;
-      if (type.type && type.type.key) typeStr += `(Sequelize${type.type.key})`;
+      if (type.type && type.type.key) typeStr += `(Sequelize.${type.type.key})`;
       migrationStr += `
         ${item}: {
           type: ${typeStr}, `;
