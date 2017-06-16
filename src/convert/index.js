@@ -22,7 +22,7 @@ const convertModel = (title, { rawAttributes, tableName: table, options: { index
         if (element === 'references') {
           migrationStr += `
           references: {
-            model: '${value.model}',
+            model: '${snake(value.model)}',
             key: '${value.key}',
           },`
         }

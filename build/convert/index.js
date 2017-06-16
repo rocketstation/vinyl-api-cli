@@ -39,7 +39,7 @@ const convertModel = (title, { rawAttributes, tableName: table, options: { index
         if (element === 'references') {
           migrationStr += `
           references: {
-            model: '${value.model}',
+            model: '${(0, _changeCase.snake)(value.model)}',
             key: '${value.key}',
           },`;
         }
