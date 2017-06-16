@@ -31,9 +31,11 @@ const convertModel = (title, { rawAttributes, tableName: table, options: { index
       if (['fieldName', 'Model', 'name'].includes(element) || element.startsWith('_')) delete rest[element];
     });
     if (typeof type !== 'undefined') {
+      let typeStr = `Sequelize.${type.key}`;
+      if (type.type && type.type.key) typeStr += `(Sequelize${type.type.key})`;
       migrationStr += `
         ${item}: {
-          type: ${`Sequelize.${type.key}`}, `;
+          type: ${typeStr}, `;
       Object.keys(rest).forEach(element => {
         const value = rest[element];
         if (element === 'references') {
