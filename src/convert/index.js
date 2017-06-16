@@ -34,6 +34,11 @@ const convertModel = (title, { rawAttributes, tableName: table, options: { index
           if (element === 'field' || (element === 'defaultValue' && typeof value === 'string')) propertyStr = `'${value}'`
           migrationStr += `
           ${element}: ${propertyStr},`
+        } else {
+          if (element === 'defaultValue' && Array.isArray(value) && value.length === 0) {
+            migrationStr += `
+          ${element}: [],`
+          }
         }
       })
       migrationStr += `
