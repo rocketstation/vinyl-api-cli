@@ -67,7 +67,7 @@ vorpal
   })
 
 vorpal
-  .command('seed', 'Resets DB')
+  .command('seed', 'Seeds DB')
   .alias('dbs')
   .action(async () => {
     try {
