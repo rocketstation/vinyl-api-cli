@@ -66,7 +66,7 @@ vorpal.command('reset', 'Resets DB').alias('dbr').action(async () => {
   }
 });
 
-vorpal.command('seed', 'Resets DB').alias('dbs').action(async () => {
+vorpal.command('seed', 'Seeds DB').alias('dbs').action(async () => {
   try {
     await (0, _seed2.default)();
     process.exit();

@@ -47,8 +47,8 @@ const convertModel = (title, { rawAttributes, tableName: table, options: { index
         }
         if (typeof value !== 'object') {
           let propertyStr = value;
-          if (['onDelete', 'onUpdate'].includes(element)) propertyStr = `'${value.toUpperCase()}'`;
-          if (element === 'field' || element === 'defaultValue' && typeof value === 'string') propertyStr = `'${value}'`;
+          if (typeof value === 'string') propertyStr = `'${value}'`;
+          if (['onDelete', 'onUpdate'].includes(element)) propertyStr = propertyStr.toUpperCase();
           migrationStr += `
           ${element}: ${propertyStr},`;
         } else {
