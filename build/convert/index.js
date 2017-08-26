@@ -23,7 +23,7 @@ const convertModel = (title, { rawAttributes, tableName: table, options: { index
   up(queryInterface) {
     return queryInterface
       .createTable('${table}', {`;
-  Object.keys(rawAttributes).forEach(item => {
+  Object.keys(rawAttributes).sort((a, b) => a > b).forEach(item => {
     const _rawAttributes$item = rawAttributes[item],
           { type } = _rawAttributes$item,
           rest = _objectWithoutProperties(_rawAttributes$item, ['type']);
@@ -36,7 +36,7 @@ const convertModel = (title, { rawAttributes, tableName: table, options: { index
       migrationStr += `
         ${item}: {
           type: ${typeStr}, `;
-      Object.keys(rest).forEach(element => {
+      Object.keys(rest).sort((a, b) => a > b).forEach(element => {
         const value = rest[element];
         if (element === 'references') {
           migrationStr += `
