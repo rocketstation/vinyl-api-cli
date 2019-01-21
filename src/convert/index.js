@@ -1,11 +1,11 @@
-import { param, pascal, snake } from 'change-case'
+import * as changeCase from '@rocketstation/change-case'
 import fs from 'fs'
 import { join } from 'path'
 import { bottle, load } from 'rocketstation-api'
 
 const convertModel = (title, { rawAttributes, tableName: table, options: { indexes = [] } }, file = '1') => {
   let migrationStr = `module.exports = Sequelize => ({
-  up(queryInterface) {
+  up (queryInterface) {
     return queryInterface
       .createTable('${table}', {`
   Object.keys(rawAttributes).sort((a, b) => a > b).forEach((item) => {
@@ -18,13 +18,13 @@ const convertModel = (title, { rawAttributes, tableName: table, options: { index
       if (type.type && type.type.key) typeStr += `(Sequelize.${type.type.key})`
       migrationStr += `
         ${item}: {
-          type: ${typeStr}, `
+          type: ${typeStr},`
       Object.keys(rest).sort((a, b) => a > b).forEach((element) => {
         const value = rest[element]
         if (element === 'references') {
           migrationStr += `
           references: {
-            model: '${snake(value.model)}',
+            model: '${changeCase.sl(value.model)}',
             key: '${value.key}',
           },`
         }
@@ -48,24 +48,17 @@ const convertModel = (title, { rawAttributes, tableName: table, options: { index
   migrationStr += `
       })`
 
-  const indexesStrings = indexes.map((item) => `'${table}', ['${item.fields.join('\',\'')}']`)
-  indexesStrings.forEach((item) => {
+  indexes.forEach(({ fields, type, unique }) => {
     migrationStr += `
-      .then(() => queryInterface.addIndex(${item}))`
+      .then(() => queryInterface.addIndex('${table}', { fields: ['${fields.join('\', \'')}']${type ? `, type: '${type}'` : ''}${unique ? `, unique: ${unique}` : ''} }))`
   })
-  migrationStr += `;
+  migrationStr += `
   },
-  down(queryInterface) {
-    return queryInterface
-      .dropTable('${table}')`
-  indexesStrings.forEach((item) => {
-    migrationStr += `
-      .then(() => queryInterface.removeIndex(${item}))`
-  })
-  migrationStr += `;
+  down (queryInterface) {
+    return queryInterface.dropTable('${table}')
   },
-});`
-  const dir = join(process.cwd(), 'models', param(title), 'migrations')
+})`
+  const dir = join(process.cwd(), 'models', changeCase.k(title), 'migrations')
   if (!fs.existsSync(dir)) fs.mkdirSync(dir)
   const [name] = file.split('.')
   fs.writeFileSync(join(dir, `${name}.js`), migrationStr)
@@ -73,7 +66,7 @@ const convertModel = (title, { rawAttributes, tableName: table, options: { index
 
 const convert = async ({ models, options: { file } }) => {
   const { sequelize } = await load()
-  const toConvert = (models || Object.keys(sequelize.models)).map((item) => pascal(item))
+  const toConvert = (models || Object.keys(sequelize.models)).map((item) => changeCase.p(item))
   toConvert.forEach((item) => convertModel(item, bottle.container[item], file))
 }
 

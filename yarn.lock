@@ -2,6 +2,16 @@
 # yarn lockfile v1
 
 
+"@rocketstation/change-case@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@rocketstation/change-case/-/change-case-2.0.0.tgz#b03f16f6d74f3ffafdb56bd43a13fa4fa376d6ef"
+  integrity sha512-fo5mDVLuGbSGInhGtKH791eByUEjYJGSc02Pi7cS+4GxJEqxUCX5mjshW3eKQ1OnQDkdUncEp1wHD5O386fCtw==
+  dependencies:
+    just-camel-case "4"
+    just-kebab-case "1"
+    just-pascal-case "1"
+    just-snake-case "1"
+
 "@types/geojson@^1.0.0":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@types/geojson/-/geojson-1.0.2.tgz#b02d10ab028e2928ac592a051aaa4981a1941d03"
@@ -2384,6 +2394,26 @@ juice@^4.0.2:
     mensch "^0.3.3"
     slick "1.12.2"
     web-resource-inliner "^4.1.0"
+
+just-camel-case@4:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/just-camel-case/-/just-camel-case-4.0.2.tgz#dc1e9e19e4200bb91f482716726135c35e901ac3"
+  integrity sha512-df6QI/EIq+6uHe/wtaa9Qq7/pp4wr4pJC/r1+7XhVL6m5j03G6h9u9/rIZr8rDASX7CxwDPQnZjffCo2e6PRLw==
+
+just-kebab-case@1:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/just-kebab-case/-/just-kebab-case-1.1.0.tgz#ebe854fde84b0afa4e597fcd870b12eb3c026755"
+  integrity sha512-QkuwuBMQ9BQHMUEkAtIA4INLrkmnnveqlFB1oFi09gbU0wBdZo6tTnyxNWMR84zHxBuwK7GLAwqN8nrvVxOLTA==
+
+just-pascal-case@1:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/just-pascal-case/-/just-pascal-case-1.1.0.tgz#24f9a93614ecb58c41c180440bb2696138c72ffa"
+  integrity sha512-9WrLmpZ2wbt/k9ZAwp8MMc9/RqPRzUZZ+szWmAGFkas4+/z//+xYN8iUOBR2gmpiH8X5rJ+/yMvNFalMSKwmyg==
+
+just-snake-case@1:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/just-snake-case/-/just-snake-case-1.1.0.tgz#763316911c89a96b6f765bccddbe930d032939e0"
+  integrity sha512-yoz5c0ivDkYrrJm1qN1MLbNGl9BfUg3BwSDkPflVCW287OoV8JY3V6vUtdO1EhucPqayLS4SuhvLYyqJYk9Dmw==
 
 kcors@2:
   version "2.2.1"

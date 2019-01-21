@@ -31,7 +31,7 @@
     "node": ">=7"
   },
   "dependencies": {
-    "change-case": "3",
+    "@rocketstation/change-case": "2",
     "rocketstation-api": "1",
     "vorpal": "1"
   }

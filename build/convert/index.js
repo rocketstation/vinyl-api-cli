@@ -4,7 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _changeCase = require('change-case');
+var _changeCase = require('@rocketstation/change-case');
+
+var changeCase = _interopRequireWildcard(_changeCase);
 
 var _fs = require('fs');
 
@@ -16,11 +18,13 @@ var _rocketstationApi = require('rocketstation-api');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 const convertModel = (title, { rawAttributes, tableName: table, options: { indexes = [] } }, file = '1') => {
   let migrationStr = `module.exports = Sequelize => ({
-  up(queryInterface) {
+  up (queryInterface) {
     return queryInterface
       .createTable('${table}', {`;
   Object.keys(rawAttributes).sort((a, b) => a > b).forEach(item => {
@@ -35,13 +39,13 @@ const convertModel = (title, { rawAttributes, tableName: table, options: { index
       if (type.type && type.type.key) typeStr += `(Sequelize.${type.type.key})`;
       migrationStr += `
         ${item}: {
-          type: ${typeStr}, `;
+          type: ${typeStr},`;
       Object.keys(rest).sort((a, b) => a > b).forEach(element => {
         const value = rest[element];
         if (element === 'references') {
           migrationStr += `
           references: {
-            model: '${(0, _changeCase.snake)(value.model)}',
+            model: '${changeCase.sl(value.model)}',
             key: '${value.key}',
           },`;
         }
@@ -65,24 +69,17 @@ const convertModel = (title, { rawAttributes, tableName: table, options: { index
   migrationStr += `
       })`;
 
-  const indexesStrings = indexes.map(item => `'${table}', ['${item.fields.join('\',\'')}']`);
-  indexesStrings.forEach(item => {
+  indexes.forEach(({ fields, type, unique }) => {
     migrationStr += `
-      .then(() => queryInterface.addIndex(${item}))`;
+      .then(() => queryInterface.addIndex('${table}', { fields: ['${fields.join('\', \'')}']${type ? `, type: '${type}'` : ''}${unique ? `, unique: ${unique}` : ''} }))`;
   });
-  migrationStr += `;
+  migrationStr += `
   },
-  down(queryInterface) {
-    return queryInterface
-      .dropTable('${table}')`;
-  indexesStrings.forEach(item => {
-    migrationStr += `
-      .then(() => queryInterface.removeIndex(${item}))`;
-  });
-  migrationStr += `;
+  down (queryInterface) {
+    return queryInterface.dropTable('${table}')
   },
-});`;
-  const dir = (0, _path.join)(process.cwd(), 'models', (0, _changeCase.param)(title), 'migrations');
+})`;
+  const dir = (0, _path.join)(process.cwd(), 'models', changeCase.k(title), 'migrations');
   if (!_fs2.default.existsSync(dir)) _fs2.default.mkdirSync(dir);
   const [name] = file.split('.');
   _fs2.default.writeFileSync((0, _path.join)(dir, `${name}.js`), migrationStr);
@@ -90,7 +87,7 @@ const convertModel = (title, { rawAttributes, tableName: table, options: { index
 
 const convert = async ({ models, options: { file } }) => {
   const { sequelize } = await (0, _rocketstationApi.load)();
-  const toConvert = (models || Object.keys(sequelize.models)).map(item => (0, _changeCase.pascal)(item));
+  const toConvert = (models || Object.keys(sequelize.models)).map(item => changeCase.p(item));
   toConvert.forEach(item => convertModel(item, _rocketstationApi.bottle.container[item], file));
 };
 
