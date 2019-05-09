@@ -13,7 +13,7 @@ const convertModel = (title, { rawAttributes, tableName: table, options: { index
     Object.keys(rest).forEach((element) => {
       if (['fieldName', 'Model', 'name'].includes(element) || element.startsWith('_')) delete rest[element]
     })
-    if (typeof type !== 'undefined') {
+    if (typeof type !== 'undefined' && type.key !== 'VIRTUAL') {
       let typeStr = `Sequelize.${type.key}`
       if (type.type && type.type.key) typeStr += `(Sequelize.${type.type.key})`
       migrationStr += `
