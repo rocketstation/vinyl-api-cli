@@ -86,9 +86,9 @@ const convertModel = (title, { rawAttributes, tableName: table, options: { index
 };
 
 const convert = async ({ models, options: { file } }) => {
-  const { sequelize } = await (0, _rocketstationApi.load)();
+  const { bottle, sequelize } = await (0, _rocketstationApi.load)();
   const toConvert = (models || Object.keys(sequelize.models)).map(item => changeCase.p(item));
-  toConvert.forEach(item => convertModel(item, _rocketstationApi.bottle.container[item], file));
+  toConvert.forEach(item => convertModel(item, bottle.container[item], file));
 };
 
 exports.default = convert;
