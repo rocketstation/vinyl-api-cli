@@ -1,7 +1,7 @@
 import * as changeCase from '@rocketstation/change-case'
 import fs from 'fs'
 import { join } from 'path'
-import { bottle, load } from 'rocketstation-api'
+import { load } from 'rocketstation-api'
 
 const convertModel = (title, { rawAttributes, tableName: table, options: { indexes = [] } }, file = '1') => {
   let migrationStr = `module.exports = Sequelize => ({
@@ -65,7 +65,7 @@ const convertModel = (title, { rawAttributes, tableName: table, options: { index
 }
 
 const convert = async ({ models, options: { file } }) => {
-  const { sequelize } = await load()
+  const { bottle, sequelize } = await load()
   const toConvert = (models || Object.keys(sequelize.models)).map((item) => changeCase.p(item))
   toConvert.forEach((item) => convertModel(item, bottle.container[item], file))
 }
