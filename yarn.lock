@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@rocketstation/change-case@^2.0.0":
+"@rocketstation/change-case@2":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@rocketstation/change-case/-/change-case-2.0.0.tgz#b03f16f6d74f3ffafdb56bd43a13fa4fa376d6ef"
   integrity sha512-fo5mDVLuGbSGInhGtKH791eByUEjYJGSc02Pi7cS+4GxJEqxUCX5mjshW3eKQ1OnQDkdUncEp1wHD5O386fCtw==
@@ -3003,8 +3003,9 @@ moment-timezone@^0.5.11, moment-timezone@^0.5.4:
     moment ">= 2.9.0"
 
 moment@2, "moment@>= 2.9.0", moment@^2.13.0:
-  version "2.18.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
+  version "2.29.2"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.2.tgz#00910c60b20843bcba52d37d58c628b47b1f20e4"
+  integrity sha512-UgzG4rvxYpN15jgCmVJwac49h9ly9NurikMWGPdVxm8GZD6XjkKPxDTjQQ43gtGgnV3X0cAyWDdP2Wexoquifg==
 
 morgan@^1.6.1:
   version "1.8.2"
