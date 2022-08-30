@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@rocketstation/change-case@^2.0.0":
+"@rocketstation/change-case@2":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@rocketstation/change-case/-/change-case-2.0.0.tgz#b03f16f6d74f3ffafdb56bd43a13fa4fa376d6ef"
   integrity sha512-fo5mDVLuGbSGInhGtKH791eByUEjYJGSc02Pi7cS+4GxJEqxUCX5mjshW3eKQ1OnQDkdUncEp1wHD5O386fCtw==
@@ -2997,14 +2997,16 @@ mjml@3:
     minimist "0.0.8"
 
 moment-timezone@^0.5.11, moment-timezone@^0.5.4:
-  version "0.5.13"
-  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.13.tgz#99ce5c7d827262eb0f1f702044177f60745d7b90"
+  version "0.5.37"
+  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.37.tgz#adf97f719c4e458fdb12e2b4e87b8bec9f4eef1e"
+  integrity sha512-uEDzDNFhfaywRl+vwXxffjjq1q0Vzr+fcQpQ1bU0kbzorfS7zVtZnCnGc8mhWmF39d4g4YriF6kwA75mJKE/Zg==
   dependencies:
     moment ">= 2.9.0"
 
 moment@2, "moment@>= 2.9.0", moment@^2.13.0:
-  version "2.18.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
+  version "2.29.4"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.4.tgz#3dbe052889fe7c1b2ed966fcb3a77328964ef108"
+  integrity sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==
 
 morgan@^1.6.1:
   version "1.8.2"
